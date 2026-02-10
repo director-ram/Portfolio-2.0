@@ -85,12 +85,16 @@ function AboutContent() {
 }
 
 export default function App() {
+  const [glowPos, setGlowPos] = useState<{ x: number; y: number } | null>(null);
+  const glowContainerRef = useRef<HTMLSpanElement>(null);
+
   const contactLinks = {
     email: 'mailto:khemasai883@gmail.com',
     github: 'https://github.com/director-ram',
     linkedin: 'https://www.linkedin.com/in/hema-sai-8b068229b/',
     // WhatsApp link must NOT contain '+' or spaces in the number
     whatsapp: 'https://wa.me/919391763277',
+    portfolio: 'https://portfolio-sigma-black-77.vercel.app/',
   };
 
   const projects = [
@@ -345,8 +349,31 @@ export default function App() {
             © {new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long' })} My Portfolio. Open for
             open for opportunities, collaborations and freelance work. With 💝 ;)
             <br />
-            <span className="inline-block pl-8 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent font-bold">
-              -Hemasai
+            <span ref={glowContainerRef} className="relative inline-block pl-8">
+              {glowPos && (
+                <span
+                  className="absolute inset-0 z-0 rounded-lg pointer-events-none"
+                  style={{
+                    background: `radial-gradient(circle 50px at ${glowPos.x}px ${glowPos.y}px, rgba(239,68,68,0.35), transparent 70%)`,
+                  }}
+                />
+              )}
+              <span className="relative z-10 font-bold">
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  href={contactLinks.portfolio}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-red-500 hover:text-red-500"
+                  onMouseMove={(e) => {
+                    const rect = glowContainerRef.current?.getBoundingClientRect();
+                    if (rect) setGlowPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+                  }}
+                  onMouseLeave={() => setGlowPos(null)}
+                >
+                  -Hemasai
+                </motion.a>
+              </span>
             </span>
           </p>
         </div>
