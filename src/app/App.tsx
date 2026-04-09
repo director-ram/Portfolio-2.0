@@ -10,7 +10,8 @@ import profile from './components/figma/profile-pic.jpg';
 import qrScanner from './components/figma/QRScanner-project.png';
 import PdfProject from './components/figma/Pdfmaker-project.png';
 import aiProject from './components/figma/AI-chatbot-project.png';
-
+import lovechat from './components/figma/LOVE-chat.png'
+import votingsystem from './components/figma/online-voting.png';
 function TypingText({
   text,
   className,
@@ -121,6 +122,22 @@ export default function App() {
       liveUrl: 'Yet to be deployed',
       codeUrl: 'https://github.com/director-ram/SubjectChat-AItutor.git',
       technologies: ['React Native', 'Redux', 'GraphQL', 'Python', 'Llama-3.2'],
+    },
+    {
+      title: 'ONLINE VOTING SYSTEM',
+      description: 'A secure, modern web-based voting application that provides a transparent platform for digital elections. Featuring a stunning 3D animated background using Three.js, the system supports daily voting periods, secure JWT-based authentication, and comprehensive candidate management with profile picture uploads.',
+      image: votingsystem,
+      liveUrl: 'https://online-voting-system-mini.netlify.app/',
+      codeUrl: 'https://github.com/director-ram/Online-Voting.git',
+      technologies: ['React', 'Three.js', 'Flask', 'PostgreSQL', 'JWT'],
+    },
+    {
+      title: 'LOVE CHAT - REAL-TIME APP',
+      description: 'A romantic-themed real-time chat application featuring a private channel system. Users can host or join unique channels with usernames, share messages, emojis, and GIFs in a beautifully designed interface with soft gradients and heart animations. Built with a focus on seamless user experience across devices.',
+      image: lovechat,
+      liveUrl: 'https://v0-real-time-chat-application-beige.vercel.app/',
+      codeUrl: 'https://github.com/director-ram/private-chat-app.git',
+      technologies: ['Next.js', 'React', 'Tailwind CSS', 'Lucide React', 'v0.dev'],
     },
   ];
 
