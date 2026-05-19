@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'motion/react';
-import { Code, Palette, Smartphone, Database, Mail, Github, Linkedin, MessageCircle } from 'lucide-react';
+import { Code, Palette, Smartphone, Database, Mail, Github, Linkedin, MessageCircle, FileText } from 'lucide-react';
 import { Background3D } from './components/Background3D';
 import { Navigation } from './components/Navigation';
 import { ProjectCard } from './components/ProjectCard';
@@ -96,6 +96,7 @@ export default function App() {
     // WhatsApp link must NOT contain '+' or spaces in the number
     whatsapp: 'https://wa.me/919391763277',
     portfolio: 'https://portfolio-sigma-black-77.vercel.app/',
+    resume: '/Kuna-Hema-Sai-Resume.docx',
   };
 
   const projects = [
@@ -198,7 +199,7 @@ export default function App() {
             </motion.p>
 
             <motion.div
-              className="flex gap-4 justify-center"
+              className="flex flex-wrap gap-4 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -209,6 +210,14 @@ export default function App() {
               >
                 View My Work
               </button>
+              <a
+                href={contactLinks.resume}
+                download="Kuna-Hema-Sai-Resume.docx"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full text-lg font-semibold border border-white/20 hover:bg-white/20 transition-all hover:scale-105"
+              >
+                <FileText size={20} />
+                View Resume
+              </a>
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 className="px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full text-lg font-semibold border border-white/20 hover:bg-white/20 transition-all hover:scale-105"
@@ -309,7 +318,25 @@ export default function App() {
                 Interested in collaborating or have a project in mind? I'd love to hear from you!
               </p>
 
+              <a
+                href={contactLinks.resume}
+                download="Kuna-Hema-Sai-Resume.docx"
+                className="inline-flex items-center gap-2 px-8 py-4 mb-8 bg-gradient-to-r from-red-600 to-red-800 rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-red-500/50 transition-all hover:scale-105"
+              >
+                <FileText size={22} />
+                Download Resume
+              </a>
+
               <div className="flex justify-center gap-6 mb-8">
+                <motion.a
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  href={contactLinks.resume}
+                  download="Kuna-Hema-Sai-Resume.docx"
+                  className="w-14 h-14 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center hover:shadow-lg hover:shadow-red-500/50 transition-all"
+                  title="Download Resume"
+                >
+                  <FileText size={24} />
+                </motion.a>
                 <motion.a
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   href={contactLinks.email}
