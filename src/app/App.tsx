@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'motion/react';
 import { Code, Palette, Smartphone, Database, Mail, Github, Linkedin, MessageCircle, FileText } from 'lucide-react';
 import { Background3D } from './components/Background3D';
@@ -12,49 +12,49 @@ import PdfProject from './components/figma/Pdfmaker-project.png';
 import aiProject from './components/figma/AI-chatbot-project.png';
 import lovechat from './components/figma/LOVE-chat.png'
 import votingsystem from './components/figma/online-voting.png';
-function TypingText({
-  text,
-  className,
-  start,
-  speed = 25,
-  onComplete,
-}: {
-  text: string;
-  className?: string;
-  start: boolean;
-  speed?: number;
-  onComplete?: () => void;
-}) {
-  const [visibleChars, setVisibleChars] = useState(0);
+// function TypingText({
+//   text,
+//   className,
+//   start,
+//   speed = 25,
+//   onComplete,
+// }: {
+//   text: string;
+//   className?: string;
+//   start: boolean;
+//   speed?: number;
+//   onComplete?: () => void;
+// }) {
+//   const [visibleChars, setVisibleChars] = useState(0);
 
-  useEffect(() => {
-    if (!start) return;
-    if (visibleChars >= text.length) {
-      if (onComplete) onComplete();
-      return;
-    }
+//   useEffect(() => {
+//     if (!start) return;
+//     if (visibleChars >= text.length) {
+//       if (onComplete) onComplete();
+//       return;
+//     }
 
-    const timeout = setTimeout(() => {
-      setVisibleChars((prev) => prev + 1);
-    }, speed);
+//     const timeout = setTimeout(() => {
+//       setVisibleChars((prev) => prev + 1);
+//     }, speed);
 
-    return () => clearTimeout(timeout);
-  }, [start, text, visibleChars, speed, onComplete]);
+//     return () => clearTimeout(timeout);
+//   }, [start, text, visibleChars, speed, onComplete]);
 
-  const isDone = visibleChars >= text.length;
+//   const isDone = visibleChars >= text.length;
 
-  return (
-    <p className={className}>
-      {text.slice(0, visibleChars)}
-      {!isDone && <span className="inline-block w-1 ml-1 bg-red-500 animate-pulse align-baseline" />}
-    </p>
-  );
-}
+//   return (
+//     <p className={className}>
+//       {text.slice(0, visibleChars)}
+//       {!isDone && <span className="inline-block w-1 ml-1 bg-red-500 animate-pulse align-baseline" />}
+//     </p>
+//   );
+// }
 
 function AboutContent() {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, margin: '-20% 0px' });
-  const [firstDone, setFirstDone] = useState(false);
+  // const [firstDone, setFirstDone] = useState(false);
 
   return (
     <motion.div
@@ -68,18 +68,19 @@ function AboutContent() {
         About Me
       </h2>
       <div className="bg-gradient-to-br from-red-900/30 to-black/30 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-red-500/10 shadow-2xl">
-        <TypingText
-          start={isInView}
-          className="text-lg md:text-xl text-white/80 leading-relaxed mb-6"
-          text="I'm a full‑stack developer who loves turning real problems into clean, fast, and beautiful digital experiences. From QR scanners and PDF generators to AI chat bots, I enjoy building products that feel simple on the surface but are powered by solid engineering underneath."
-          onComplete={() => setFirstDone(true)}
-        />
-        <TypingText
-          start={isInView && firstDone}
-          className="text-lg md:text-xl text-white/80 leading-relaxed"
-          speed={18}
-          text="I work across the stack with React, Next.js, TypeScript, Node.js, Python, PostgreSQL, MongoDB, and modern mobile frameworks like React Native and Flutter, GOLang while bringing a strong focus on design with Figma, UI/UX, and 3D visuals. My goal in every project is the same: ship reliable, scalable features that look great, feel smooth, and create a memorable experience for users."
-        />
+        {/* <TypingText
+          start={isInView} */}
+          <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-6">
+          I'm a full‑stack developer who loves turning real problems into clean, fast, and beautiful digital experiences. From QR scanners and PDF generators to AI chat bots, I enjoy building products that feel simple on the surface but are powered by solid engineering underneath.
+          </p>
+          {/* onComplete={() => setFirstDone(true)}
+        /> */}
+
+        {/* <TypingText
+          start={isInView && firstDone} */}
+          <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+          I work across the stack with React, Next.js, TypeScript, Node.js, Python, PostgreSQL, MongoDB, and modern mobile frameworks like React Native and Flutter, GOLang while bringing a strong focus on design with Figma, UI/UX, and 3D visuals. My goal in every project is the same: ship reliable, scalable features that look great, feel smooth, and create a memorable experience for users.
+          </p>
       </div>
     </motion.div>
   );
@@ -96,7 +97,7 @@ export default function App() {
     // WhatsApp link must NOT contain '+' or spaces in the number
     whatsapp: 'https://wa.me/919391763277',
     portfolio: 'https://portfolio-sigma-black-77.vercel.app/',
-    resume: '/Kuna-Hema-Sai-Resume.docx',
+    resume: '/KUNA-HEMA-SAI.docx',
   };
 
   const projects = [
@@ -212,7 +213,7 @@ export default function App() {
               </button>
               <a
                 href={contactLinks.resume}
-                download="Kuna-Hema-Sai-Resume.docx"
+                download="KUNA-HEMA-SAI.docx"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full text-lg font-semibold border border-white/20 hover:bg-white/20 transition-all hover:scale-105"
               >
                 <FileText size={20} />
@@ -320,7 +321,7 @@ export default function App() {
 
               <a
                 href={contactLinks.resume}
-                download="Kuna-Hema-Sai-Resume.docx"
+                download="KUNA-HEMA-SAI.docx"
                 className="inline-flex items-center gap-2 px-8 py-4 mb-8 bg-gradient-to-r from-red-600 to-red-800 rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-red-500/50 transition-all hover:scale-105"
               >
                 <FileText size={22} />
@@ -331,7 +332,7 @@ export default function App() {
                 <motion.a
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   href={contactLinks.resume}
-                  download="Kuna-Hema-Sai-Resume.docx"
+                  download="KUNA-HEMA-SAI.docx"
                   className="w-14 h-14 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center hover:shadow-lg hover:shadow-red-500/50 transition-all"
                   title="Download Resume"
                 >
