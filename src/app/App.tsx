@@ -4,7 +4,9 @@ import { Code, Palette, Smartphone, Database, Mail, Github, Linkedin, MessageCir
 import { Background3D } from './components/Background3D';
 import { Navigation } from './components/Navigation';
 import { ProjectCard } from './components/ProjectCard';
+import { ResumeViewer } from './components/ResumeViewer';
 import { SkillCard } from './components/SkillCard';
+import { resumeConfig } from './resume';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import profile from './components/figma/profile-pic.jpg';
 import qrScanner from './components/figma/QRScanner-project.png';
@@ -88,6 +90,7 @@ function AboutContent() {
 
 export default function App() {
   const [glowPos, setGlowPos] = useState<{ x: number; y: number } | null>(null);
+  const [resumeOpen, setResumeOpen] = useState(false);
   const glowContainerRef = useRef<HTMLSpanElement>(null);
 
   const contactLinks = {
@@ -97,7 +100,6 @@ export default function App() {
     // WhatsApp link must NOT contain '+' or spaces in the number
     whatsapp: 'https://wa.me/919391763277',
     portfolio: 'https://portfolio-sigma-black-77.vercel.app/',
-    resume: '/KUNA-HEMA-SAI.docx',
   };
 
   const projects = [
@@ -211,14 +213,14 @@ export default function App() {
               >
                 View My Work
               </button>
-              <a
-                href={contactLinks.resume}
-                download="KUNA-HEMA-SAI.docx"
+              <button
+                type="button"
+                onClick={() => setResumeOpen(true)}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full text-lg font-semibold border border-white/20 hover:bg-white/20 transition-all hover:scale-105"
               >
                 <FileText size={20} />
                 View Resume
-              </a>
+              </button>
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 className="px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full text-lg font-semibold border border-white/20 hover:bg-white/20 transition-all hover:scale-105"
@@ -319,25 +321,35 @@ export default function App() {
                 Interested in collaborating or have a project in mind? I'd love to hear from you!
               </p>
 
-              <a
-                href={contactLinks.resume}
-                download="KUNA-HEMA-SAI.docx"
-                className="inline-flex items-center gap-2 px-8 py-4 mb-8 bg-gradient-to-r from-red-600 to-red-800 rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-red-500/50 transition-all hover:scale-105"
-              >
-                <FileText size={22} />
-                Download Resume
-              </a>
+              <div className="flex flex-wrap justify-center gap-4 mb-8">
+                <button
+                  type="button"
+                  onClick={() => setResumeOpen(true)}
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-600 to-red-800 rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-red-500/50 transition-all hover:scale-105"
+                >
+                  <FileText size={22} />
+                  View Resume
+                </button>
+                <a
+                  href={resumeConfig.docx}
+                  download={resumeConfig.docxFilename}
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full text-lg font-semibold border border-white/20 hover:bg-white/20 transition-all hover:scale-105"
+                >
+                  <FileText size={22} />
+                  Download DOCX
+                </a>
+              </div>
 
               <div className="flex justify-center gap-6 mb-8">
-                <motion.a
+                <motion.button
+                  type="button"
                   whileHover={{ scale: 1.2, rotate: 5 }}
-                  href={contactLinks.resume}
-                  download="KUNA-HEMA-SAI.docx"
+                  onClick={() => setResumeOpen(true)}
                   className="w-14 h-14 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center hover:shadow-lg hover:shadow-red-500/50 transition-all"
-                  title="Download Resume"
+                  title="View Resume"
                 >
                   <FileText size={24} />
-                </motion.a>
+                </motion.button>
                 <motion.a
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   href={contactLinks.email}
@@ -423,6 +435,8 @@ export default function App() {
           </p>
         </div>
       </footer>
+
+      <ResumeViewer open={resumeOpen} onClose={() => setResumeOpen(false)} />
     </div>
   );
 }
